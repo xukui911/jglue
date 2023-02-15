@@ -1,23 +1,27 @@
 # jglue
 
-### 介绍
-java实现的脚本引擎，纯解释执行。语法上最大程度兼容js，使用简单；体积小巧（编译后的jar包只有350K+）；功能和效率全面超越现有的java解释型脚本以及表达式引擎
-（在百万次循环执行中，比qlexpress执行效率有倍数提升）。在规则以及决策方面与宿主java语言无缝集成。也可以作为低代码平台后端业务功能扩展引擎
+### Introduction
+The script engine implemented in Java is purely interpreted and executed. It is syntactically compatible with js and easy to use; 
+Small size (the compiled jar package is only 350K+); Its function and efficiency are completely superior to the existing java interpretive
+script and expression engine。 Seamlessly integrates with the host java language in terms of rules and decisions. It can also be used as the
+back-end business function extension engine of the low-code platform
      
 
-### 软件架构
-软件架构说明
+### Software Architecture
 
-### 安装教程
 
-1.  下载项目后，可直接根据源码编译出jar包，或者在项目下的target目录下找到已经编译好的jar包
-2.  在目标项目中直接引入jglue包
+### Installation Tutorial
 
-### 使用说明
+1. After downloading the project, you can directly compile the jar package according to the source code, or find the compiled jar package
+   in the target directory under the project
 
- #### 1.第一个案例：hellojglue
+2. Directly introduce the jglue package into the target project
+
+### Instructions for use
+
+ #### 1.First example：hellojglue
     
- ##### 解析执行一体：
+ ##### Integration of analysis and execution：
 ```
     JglueEngine engine = new JglueEngine();
     JGlueContext context = new JSimpleContext();\n
@@ -25,7 +29,7 @@ java实现的脚本引擎，纯解释执行。语法上最大程度兼容js，�
     engine.execRuntime("print('hello,' +name+ '！！')", context);
 ```
 	
-  ##### 解析执行分离  
+  ##### Analysis execution separation  
 ```
     JglueEngine engine = new JglueEngine();
     engine.addContent("func hellojglue() {print('hello,'+name+'!!');}");
@@ -35,8 +39,9 @@ java实现的脚本引擎，纯解释执行。语法上最大程度兼容js，�
     engine.execFunc("hellojglue", context);
 ```
 
-  通过文件定义(格式化代码清晰美观)：classpath下新建文件：com/xw/glue/test.glue
-  键入脚本内容：
+  Through file definition (the format code is clear and beautiful): create a new file under classpath: http://xw/lue/test.glue
+
+   Type script content：
         
 ```
        func helloJglue() {
@@ -45,7 +50,7 @@ java实现的脚本引擎，纯解释执行。语法上最大程度兼容js，�
 ```
 
     
- 通过下面方式执行脚本代码：
+ Execute script code in the following way：
    
 
 ```
@@ -59,22 +64,22 @@ java实现的脚本引擎，纯解释执行。语法上最大程度兼容js，�
 ```
 
     
-#### 2.  基本语法
+#### 2.  Basic grammar
     
-#####  定义数字： 
+#####  Define Number： 
        var a = 1；
  
-#####  定义字符串
+#####  Define String
        var b = 'b';
 
-#####  定义对象： 
+#####  Define Object： 
        var c = {a: a, b: b, c: 'c', d: 4};   
 
-#####  定义数组： 
+#####  Define Array： 
        var d = [a, b, c, 4, '5'];
     
     
-#####  方法定义(关键字func或者function)：   
+#####  Define Function(关键字func或者function)：   
 ```
        func hello() {
          var a = 1;    
@@ -83,7 +88,7 @@ java实现的脚本引擎，纯解释执行。语法上最大程度兼容js，�
          var d = [a, b, c, 4, '5'];
        } 
 ```
-###### 条件判断if
+###### if
     func helloIf() {
         var a = 1;
         if(a>0) {
@@ -95,7 +100,7 @@ java实现的脚本引擎，纯解释执行。语法上最大程度兼容js，�
         }
     }
    
-###### 循环结构while
+###### while
     func helloWhile() {
         var i=10;
         while(i>0) {
@@ -103,7 +108,7 @@ java实现的脚本引擎，纯解释执行。语法上最大程度兼容js，�
             i--;
         }
     }
-###### 循环结构for
+###### for
     func helloFor() {
         //普通for循环
         for(var i=0;i<10;i++) {
@@ -121,7 +126,7 @@ java实现的脚本引擎，纯解释执行。语法上最大程度兼容js，�
             print('list['+index+']='+val);
         }
     }
-###### 选择语句switch
+###### switch
     func helloSwitch() {
         var a = 1;
         switch(a) {
@@ -130,7 +135,7 @@ java实现的脚本引擎，纯解释执行。语法上最大程度兼容js，�
             default: print('defalut'); break;
         }
     }
-###### 异常处理try/catch/finally
+###### try/catch/finally
      func helloTryCatch() {
         var a = 1;
         try{
@@ -142,22 +147,22 @@ java实现的脚本引擎，纯解释执行。语法上最大程度兼容js，�
             print('excute finally');
         }
     }
-###### 注释使用
+###### Note
 ```
 func helloDesc() {
-  var a = 1; //这是注释
-  //这是注释
+  var a = 1; // this is note
+  // this is note
   var b = 2;
   /*
-    这里也可以是注释
+    this is note
    */
   var c = 3;
 }
 ```
     
-#### 3.高级语法部分
+#### 3.Advanced grammar
 
-###### 函数调用
+###### Execute Function
 ```
 func funcA() {
     funcB();
@@ -177,7 +182,7 @@ JGlueContext context = new JSimpleContext();
 engine.execFunc("funcA", context);
 
 ``` 
-###### 子函数定义
+###### Subfunction definition
 ```
 func parent() {
      func childA() {
@@ -195,7 +200,7 @@ JGlueContext context = new JSimpleContext();
 engine.execFunc("parent", context);
 
 ```
-###### 匿名函数
+###### Anonymous function
 ```
 func parent() {
   	var childA = () => {
@@ -208,13 +213,13 @@ func parent() {
   	childB();
 }
      
-调用代码：
+Java Execute：
 JGlueContext context = new JSimpleContext();
 engine.execFunc("parent", context);
 
 ```
 
-###### 函数作为参数传递
+###### Function passed as parameter
 ```
 func funcA() {
   	funcB((a) => {print(a);}, (b) => {return 2*b;});
@@ -225,16 +230,16 @@ func funcB(fa, fb) {
   	print(fb(2));
 }
 
-调用代码：
+Java Execute：
 JGlueContext context = new JSimpleContext();
 engine.execFunc("funcA", context);
 ```
-###### 支持闭包
+###### Supports closures
 ```
 func funcA() {
   	var fa = funcB();
   	print(fa(100));
-  	//支持链式调用
+  	// call chaining
   	print(funcB()(200));
 }
 func funcB() {
@@ -242,12 +247,12 @@ func funcB() {
   	return (x) => { return a+x;};
 }
 
-调用代码：
+Java Execute：
 GlueContext context = new JSimpleContext();
 engine.execFunc("funcA", context);
 ```
 
-###### 面向对象支持：
+###### Object-oriented support
 ```
 func Person(name, age) {
   this.name = name;
@@ -267,13 +272,13 @@ func funcA() {
   hanmeimei.say()
 }
 
-调用代码：
+Java Execute：
 GlueContext context = new JSimpleContext();
 engine.execFunc("funcA", context);
 ```
-#### 4.常用系统函数
+#### 4.Common system functions
 
-###### 静态函数（可自定义扩展）
+###### Static function (customizable and extensible)
 ```
 func funtA() {
   print('hello, jglue');   //打印
@@ -285,22 +290,22 @@ func funtA() {
   Math.max(5, 6);
 }
 
-调用代码：
+Java Execute：
 GlueContext context = new JSimpleContext();
 engine.execFunc("funcA", context);
 
 ```
-###### 对象函数（可自定义扩展）
+###### Object function (customizable and extensible)
 
 ```
 func funtA() {
-  //启动新线程执行任务
+  // execute by Thread
   new Thread((t) => {
     print(t.name);
     print(t.id);
   }).start();
   
-  //String方法
+  //String
   print('abc'.length());
   print('abc'.substring(0,1));
   print('abc'.split('b'));
@@ -324,9 +329,9 @@ func funtA() {
   print(arr.push(2));
   print(arr.size());
   print(arr.length);
-  print(arr.indexOf(2));   //获取指定元素所在位置
+  print(arr.indexOf(2));   //Get the location of the specified element
   
-  //Promise异步
+  //Promise
   var promise = new Promise((r, j)=>{r(123);}).then(
     (data) => {
       print(data);
@@ -338,18 +343,18 @@ func funtA() {
       return data + 100;
     }
   );
-  print(promise.get());  //同步获取最终结果
+  print(promise.get());  //Get the final result synchronously
 
 }
 
-调用代码：
+Java Execute：
 GlueContext context = new JSimpleContext();
 engine.execFunc("funcA", context);
 
 ```
-#### 5.自定义函数
+#### 5.Custom function
 ```
-        //首先定义打印函数
+        //First define the print function
 	public class DemoPrintFunc extends AbstractFunc {
 		public DemoPrintFunc() {
 			super("demoPrint");
@@ -363,7 +368,7 @@ engine.execFunc("funcA", context);
 		}
 	}
 
-        //单元测试
+        //unit testing
         public void testAddFunc() {
             JglueEngine engine = new JglueEngine();
 	    JGlueContext context = new JSimpleContext();
@@ -371,18 +376,18 @@ engine.execFunc("funcA", context);
 	    context.set("paramOne", "this is addFunc UnitTest！！");
 	    engine.execFunc("demoPrint", context);
             
-            //其他函数中引用   
+            //References in other functions   
             engine.execRuntime("()=>{demoPrint('hello, I\\'m demoPrint!!');}()", context);
 	}
         
-        //输出结果
+        //Output results
         this is addFunc UnitTest！！
         hello, I'm demoPrint!!
 
 ```
-#### 6.效率展示
+#### 6.Efficiency demonstration（with QlExpress）
 
-###### 简单数学表达式计算（单元测试）
+###### Simple mathematical expression calculation (unit test)
 ```
 public void testQLConst() throws Exception {
 		//String express = "c=a+b+d+aa(aa(b,aa(1,9)),3);return c;function aa(int a, int b) {return a+b}";
@@ -395,7 +400,7 @@ public void testQLConst() throws Exception {
 	        	obj = runner.execute(express, expressContext, null, true, false);
 	        }
 	     long end = System.currentTimeMillis();
-	     System.out.println("testQL耗时："+(end-start) +"ms,执行结果"+obj);
+	     System.out.println("testQL const："+(end-start) +"ms,result is "+obj);
 	}
 	
 	public void testJglueConst() {		
@@ -410,13 +415,13 @@ public void testQLConst() throws Exception {
 	        	obj = jExpress.execute(context);
 	        }
 	        long end = System.currentTimeMillis();
-	        System.out.println("testJglueConst耗时："+(end-start) +"ms,执行结果"+obj);
+	        System.out.println("testJglue const："+(end-start) +"ms,result is "+obj);
 	}
-    //执行结果：
-      testQL耗时：1399ms,执行结果11181.0
-      testJglueConst耗时：121ms,执行结果11181.0
+    //Result：
+      testQL const：1399ms,result is 11181.0
+      testJglue const：121ms,result is 11181.0
 ```   
-###### 简单函数执行（单元测试）
+###### Simple function execution (unit test)
 ```
 public void testQLJava() throws Exception {
 		String express = "c=a+b+d+aa(aa(b,aa(1,9)),3);return c;function aa(int a, int b) {return a+b}";
@@ -432,7 +437,7 @@ public void testQLJava() throws Exception {
 	        	obj = runner.execute(express, expressContext, null, true, false);
 	        }
 	        long end = System.currentTimeMillis();
-	        System.out.println("testQLJava耗时："+(end-start) +",执行结果"+obj);
+	        System.out.println("testQLJava const："+(end-start) +",result is "+obj);
 	}
 	
 	public void testJglue() {		
@@ -452,15 +457,15 @@ public void testQLJava() throws Exception {
 	        	obj = engine.execFunc("a", context);
 	        }
 	        long end = System.currentTimeMillis();
-	        System.out.println("jgule耗时："+(end-start) +"ms,执行结果"+obj);
+	        System.out.println("jgule const："+(end-start) +"ms,result is "+obj);
 	}
 
-    //执行结果：
-      testQLJava耗时：1182ms,执行结果2000091
-      jgule耗时：623ms,执行结果2000091
+    //Output：
+      testQLJava const：1182ms,result is 2000091
+      jgule const：623ms,result is 2000091
 ```
 
-#### 6.多线程安全验证
+#### 6.Multi-thread security verification
  ```
     public void testThread() {
 		String content = "func a(d) {var a=10; var b=20; var c=a+b+d+aa(aa(2,aa(1,9)),3);return c;} func aa(a,b) {return a+b;}";
@@ -473,50 +478,33 @@ public void testQLJava() throws Exception {
 				JGlueContext context = new JSimpleContext();
 				context.set("d", a);
 				Object obj = engine.execFunc("a", context);
-				System.out.println("线程"+a+"执行结果"+obj);
+				System.out.println("Thread "+a+" result is "+obj);
 			}, String.valueOf(a)).start();
 		}
-                //让主线程稍微等待一会
+                // wait
 		LockSupport.parkNanos(1000000000l);
 	}
 
-     //输出结果：
-线程9执行结果54
-线程18执行结果63
-线程7执行结果52
-线程13执行结果58
-线程12执行结果57
-线程2执行结果47
-线程11执行结果56
-线程8执行结果53
-线程4执行结果49
-线程1执行结果46
-线程17执行结果62
-线程15执行结果60
-线程3执行结果48
-线程14执行结果59
-线程0执行结果45
-线程5执行结果50
-线程10执行结果55
-线程19执行结果64
-线程16执行结果61
-线程6执行结果51
+//Output：
+hread 9 result is 54
+Thread 18 result is 63
+Thread 7 result is 52
+Thread 13 result is 58
+Thread 12 result is 57
+Thread 2 result is 47
+Thread 11 result is 56
+Thread 8 result is 53
+Thread 4 result is 49
+Thread 1 result is 46
+Thread 17 result is 62
+Thread 15 result is 60
+Thread 3 result is 48
+Thread 14 result is 59
+Thread 0 result is 45
+Thread 5 result is 50
+Thread 10 result is 55
+Thread 19 result is 64
+Thread 16 result is 61
+Thread 6 result is 51
 
 ```
-
-### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
-
-
-### 特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)

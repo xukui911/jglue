@@ -73,10 +73,17 @@ back-end business function extension engine of the low-code platform
        var b = 'b';
 
 #####  Define Object： 
-       var c = {a: a, b: b, c: 'c', d: 4};   
+       var c = {a: a, b: b, c: 'c', d: 4}; 
+       var b = c.a;
+       var d = c['b'];
+       var e = 'c';
+       var f = c[e];       
 
 #####  Define Array： 
        var d = [a, b, c, 4, '5'];
+       var e = d[0];
+       var f = 1;
+       var g = d[f];
     
     
 #####  Define Function(关键字func或者function)：   

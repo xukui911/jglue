@@ -110,7 +110,7 @@ back-end business function extension engine of the low-code platform
        print(i);
     
     
-#####  Define Function(关键字func或者function)：   
+#####  Define Function(Use keywords func or function)：   
 ```
        func hello() {
          var a = 1;    
@@ -141,17 +141,17 @@ back-end business function extension engine of the low-code platform
     }
 ###### for
     func helloFor() {
-        //普通for循环
+        //common for
         for(var i=0;i<10;i++) {
             print(i);
         }
-        //遍历map
+        //map
         var map = {a: 'a', b: 'b'};
         for(key,val of map) {
             print(key+'='+val);
         }
 
-        //遍历list
+        //list
         var list = ['a',1,2,3, 'b'];
         for(val,index of list) {
             print('list['+index+']='+val);
@@ -208,7 +208,7 @@ func funcC(c) {
     print('hello,' + c);
 }
 
-调用代码：
+java execute：
 JGlueContext context = new JSimpleContext();
 engine.execFunc("funcA", context);
 
@@ -226,7 +226,7 @@ func parent() {
      childB();   
 }
 
-调用代码：
+java execute：
 JGlueContext context = new JSimpleContext();
 engine.execFunc("parent", context);
 
@@ -312,8 +312,8 @@ engine.execFunc("funcA", context);
 ###### Static function (customizable and extensible)
 ```
 func funtA() {
-  print('hello, jglue');   //打印
-  len('hello, jglue')      //获取字符串长度
+  print('hello, jglue');   //print
+  len('hello, jglue')      //get length
 
   Math.random();
   Math.floor(5.5);

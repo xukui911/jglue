@@ -539,3 +539,42 @@ Thread 16 result is 61
 Thread 6 result is 51
 
 ```
+
+#### 7.Import use
+
+Create two script files at classpath
+com/xw/glue/test1.glue
+com/xw/glue/test2.glue
+```
+//test1.glue
+
+import com/xw/glue/test2.glue as test;
+
+func testImport() {
+	print(test.getFibonacci(10));
+}
+
+//test2.glue
+function getFibonacci(n) {  
+  var fibarr = [];
+  var i = 0;
+  while(i<n) {
+    if(i<=1) {
+      fibarr.push(i);
+    }else{
+      fibarr.push(fibarr[i-1] + fibarr[i-2]);
+    }
+    i++;
+  }
+  return fibarr;
+}    
+
+//Unit testing
+public void testImport() {
+		JSimpleContext context = new JSimpleContext();
+		JglueEngine engine = new JglueEngine();
+		engine.loadFile("com/xw/glue/test1.glue");
+		
+		engine.execFunc("testImport", context);
+	}
+```
